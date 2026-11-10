@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Audit · Smartcare</title><link rel="stylesheet" href="/assets/style.css"><link rel="stylesheet" href="/assets/security.css">
+<script src="/assets/auth.js" defer></script><script src="/assets/audit.js" defer></script></head>
+<body><a class="skip" href="#main">Aller au contenu</a>
+<header class="topbar"><a class="brand" href="/"><span class="brand-mark">S</span>Smartcare</a><nav aria-label="Navigation principale"><a href="/">Surveillance</a><a href="/alerts">Alertes <span class="nav-alert-count" hidden>0</span></a><a href="/audit" aria-current="page">Audit</a><a id="admin-link" href="/admin" hidden>Administration</a></nav><div class="account-controls"><span id="account-label"></span><button id="logout" class="button">Se déconnecter</button></div></header>
+<main id="main"><div class="heading"><div><h1>Audit de surveillance</h1><p class="muted">État des capteurs et chronologie des événements techniques</p></div><button id="refresh" class="button">Actualiser</button></div>
+<p id="account-error" class="form-error" role="alert"></p><div id="audit-error" class="error-banner" role="alert" hidden></div>
+<section class="panel"><div class="panel-heading"><h2>État des capteurs</h2><span id="audit-updated" class="muted"></span></div><div id="audit-devices" class="audit-grid"></div></section>
+<section class="panel"><div class="panel-heading"><div><h2>Chronologie</h2><p class="muted">Déconnexions, reprises et changements d’état, du plus récent au plus ancien.</p></div><label>Patient<select id="audit-patient"></select></label></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Patient</th><th>Catégorie</th><th>Description</th><th>Statut</th></tr></thead><tbody id="audit-events"></tbody></table></div></section>
+</main></body></html>

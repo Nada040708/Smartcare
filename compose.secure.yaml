@@ -1,0 +1,33 @@
+# Docker Compose >= 2.24.4: !override replaces, rather than adds to, legacy ports.
+# docker compose -f compose.yaml -f compose.secure.yaml up -d --wait
+services:
+  mosquitto:
+    ports: !override
+      - "127.0.0.1:8883:8883"
+    volumes: !override
+      - ./infra/mosquitto/mosquitto.secure.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./infra/mosquitto/acl:/mosquitto/config/acl:ro
+      - ./infra/mosquitto/start-secure.sh:/mosquitto/config/start-secure.sh:ro
+      - ./.secrets/broker:/mosquitto/security:ro
+      - ./.secrets/tls/broker.crt:/mosquitto/tls/broker.crt:ro
+      - ./.secrets/tls/broker.key:/mosquitto/tls/broker.key:ro
+      - ./.secrets/tls/ca.crt:/mosquitto/tls/ca.crt:ro
+    tmpfs:
+      - /run/smartcare:mode=0700
+    entrypoint: ["/bin/sh", "/mosquitto/config/start-secure.sh"]
+    healthcheck:
+      test: ["CMD-SHELL", "mosquitto_pub -h localhost -p 8883 --cafile /mosquitto/tls/ca.crt -u healthcheck -P \"$$(cat /mosquitto/security/healthcheck.password)\" -t smartcare/healthcheck -m ready -q 1"]
+  node-red:
+    ports: !override []
+    environment:
+      MQTT_PORT: "8883"
+    volumes:
+      - ./infra/node-red/settings.secure.js:/opt/smartcare/settings.secure.js:ro
+      - ./infra/node-red/start-secure.js:/opt/smartcare/start-secure.js:ro
+      - ./.secrets/node-red.json:/run/secrets/node-red.json:ro
+      - ./.secrets/tls/ca.crt:/run/secrets/ca.crt:ro
+    tmpfs:
+      - /secure-data:uid=1000,gid=1000,mode=0700
+    entrypoint: ["node", "/opt/smartcare/start-secure.js"]
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:1880/',r=>{r.resume();process.exit(r.statusCode===404?0:1)}).on('error',()=>process.exit(1))"]

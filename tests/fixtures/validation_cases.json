@@ -1,0 +1,1869 @@
+{
+  "now": "2026-10-08T16:00:00+00:00",
+  "cases": [
+    {
+      "name": "normal",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "abnormal but structurally valid",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 145,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "low oxygen must reach later alert rules",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "spo2",
+        "value": 50,
+        "unit": "%",
+        "ieee11073_metadata": {
+          "metric_code": "150456",
+          "metric_refid": "MDC_PULS_OXIM_SAT_O2",
+          "unit_code": "262688",
+          "unit_refid": "MDC_DIM_PERCENT",
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "mapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "heart_rate minimum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 0,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "heart_rate maximum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 300,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "heart_rate outside upper limit",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 301,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "out_of_range"
+      ]
+    },
+    {
+      "name": "spo2 minimum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "spo2",
+        "value": 0,
+        "unit": "%",
+        "ieee11073_metadata": {
+          "metric_code": "150456",
+          "metric_refid": "MDC_PULS_OXIM_SAT_O2",
+          "unit_code": "262688",
+          "unit_refid": "MDC_DIM_PERCENT",
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "mapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "spo2 maximum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "spo2",
+        "value": 100,
+        "unit": "%",
+        "ieee11073_metadata": {
+          "metric_code": "150456",
+          "metric_refid": "MDC_PULS_OXIM_SAT_O2",
+          "unit_code": "262688",
+          "unit_refid": "MDC_DIM_PERCENT",
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "mapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "spo2 outside upper limit",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "spo2",
+        "value": 101,
+        "unit": "%",
+        "ieee11073_metadata": {
+          "metric_code": "150456",
+          "metric_refid": "MDC_PULS_OXIM_SAT_O2",
+          "unit_code": "262688",
+          "unit_refid": "MDC_DIM_PERCENT",
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "mapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "out_of_range"
+      ]
+    },
+    {
+      "name": "temperature minimum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "temperature",
+        "value": 20,
+        "unit": "°C",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "temperature maximum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "temperature",
+        "value": 50,
+        "unit": "°C",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "temperature outside upper limit",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "temperature",
+        "value": 51,
+        "unit": "°C",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "out_of_range"
+      ]
+    },
+    {
+      "name": "systolic_bp minimum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "systolic_bp",
+        "value": 1,
+        "unit": "mmHg",
+        "ieee11073_metadata": {
+          "metric_code": "150021",
+          "metric_refid": "MDC_PRESS_BLD_NONINV_SYS",
+          "unit_code": "266016",
+          "unit_refid": "MDC_DIM_MMHG",
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "mapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "systolic_bp maximum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "systolic_bp",
+        "value": 350,
+        "unit": "mmHg",
+        "ieee11073_metadata": {
+          "metric_code": "150021",
+          "metric_refid": "MDC_PRESS_BLD_NONINV_SYS",
+          "unit_code": "266016",
+          "unit_refid": "MDC_DIM_MMHG",
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "mapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "systolic_bp outside upper limit",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "systolic_bp",
+        "value": 351,
+        "unit": "mmHg",
+        "ieee11073_metadata": {
+          "metric_code": "150021",
+          "metric_refid": "MDC_PRESS_BLD_NONINV_SYS",
+          "unit_code": "266016",
+          "unit_refid": "MDC_DIM_MMHG",
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "mapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "out_of_range"
+      ]
+    },
+    {
+      "name": "diastolic_bp minimum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "diastolic_bp",
+        "value": 1,
+        "unit": "mmHg",
+        "ieee11073_metadata": {
+          "metric_code": "150022",
+          "metric_refid": "MDC_PRESS_BLD_NONINV_DIA",
+          "unit_code": "266016",
+          "unit_refid": "MDC_DIM_MMHG",
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "mapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "diastolic_bp maximum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "diastolic_bp",
+        "value": 250,
+        "unit": "mmHg",
+        "ieee11073_metadata": {
+          "metric_code": "150022",
+          "metric_refid": "MDC_PRESS_BLD_NONINV_DIA",
+          "unit_code": "266016",
+          "unit_refid": "MDC_DIM_MMHG",
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "mapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "diastolic_bp outside upper limit",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "diastolic_bp",
+        "value": 251,
+        "unit": "mmHg",
+        "ieee11073_metadata": {
+          "metric_code": "150022",
+          "metric_refid": "MDC_PRESS_BLD_NONINV_DIA",
+          "unit_code": "266016",
+          "unit_refid": "MDC_DIM_MMHG",
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "mapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "out_of_range"
+      ]
+    },
+    {
+      "name": "glucose minimum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "glucose",
+        "value": 1,
+        "unit": "mg/dL",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "glucose maximum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "glucose",
+        "value": 1000,
+        "unit": "mg/dL",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "glucose outside upper limit",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "glucose",
+        "value": 1001,
+        "unit": "mg/dL",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "out_of_range"
+      ]
+    },
+    {
+      "name": "respiratory_rate minimum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "respiratory_rate",
+        "value": 0,
+        "unit": "breaths/min",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "respiratory_rate maximum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "respiratory_rate",
+        "value": 100,
+        "unit": "breaths/min",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "respiratory_rate outside upper limit",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "respiratory_rate",
+        "value": 101,
+        "unit": "breaths/min",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "out_of_range"
+      ]
+    },
+    {
+      "name": "hrv minimum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "hrv",
+        "value": 0,
+        "unit": "ms",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "hrv maximum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "hrv",
+        "value": 5000,
+        "unit": "ms",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "hrv outside upper limit",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "hrv",
+        "value": 5001,
+        "unit": "ms",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "out_of_range"
+      ]
+    },
+    {
+      "name": "activity minimum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "activity",
+        "value": 0,
+        "unit": "1",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "activity maximum",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "activity",
+        "value": 1,
+        "unit": "1",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "activity outside upper limit",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "activity",
+        "value": 2,
+        "unit": "1",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "out_of_range"
+      ]
+    },
+    {
+      "name": "invalid value True",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": true,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_value"
+      ]
+    },
+    {
+      "name": "invalid value 84",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": "84",
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_value"
+      ]
+    },
+    {
+      "name": "invalid value None",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": null,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_value"
+      ]
+    },
+    {
+      "name": "invalid value -1",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": -1,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "out_of_range"
+      ]
+    },
+    {
+      "name": "invalid unit mg/dL",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "mg/dL",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "unit_mismatch"
+      ]
+    },
+    {
+      "name": "invalid parameter unknown",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "unknown",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "unknown_parameter"
+      ]
+    },
+    {
+      "name": "invalid parameter __proto__",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "__proto__",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "unknown_parameter"
+      ]
+    },
+    {
+      "name": "invalid parameter toString",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "toString",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "unknown_parameter"
+      ]
+    },
+    {
+      "name": "invalid patient_id P/001",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P/001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_format",
+        "topic_mismatch"
+      ]
+    },
+    {
+      "name": "quality questionable",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "questionable",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "questionable",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_quality"
+      ]
+    },
+    {
+      "name": "quality invalid",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "invalid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "invalid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_quality"
+      ]
+    },
+    {
+      "name": "quality unknown",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "unknown",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "unknown",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_quality"
+      ]
+    },
+    {
+      "name": "age -120",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T15:58:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T15:58:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "age -121",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T15:57:59+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T15:57:59+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "stale_timestamp"
+      ]
+    },
+    {
+      "name": "age 5",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:05+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:05+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "age 6",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:06+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:06+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "future_timestamp"
+      ]
+    },
+    {
+      "name": "bad date 2026-10-08T16:00:00",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_timestamp"
+      ]
+    },
+    {
+      "name": "bad date 2026-02-30T16:00:00Z",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-02-30T16:00:00Z",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-02-30T16:00:00Z",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_timestamp"
+      ]
+    },
+    {
+      "name": "bad date 2026-10-08T24:00:00Z",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T24:00:00Z",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T24:00:00Z",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_timestamp"
+      ]
+    },
+    {
+      "name": "bad date 2026-10-08T16:00:00+25:00",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+25:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+25:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_timestamp"
+      ]
+    },
+    {
+      "name": "bad date 2026-10-08T16:60:00Z",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:60:00Z",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:60:00Z",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_timestamp"
+      ]
+    },
+    {
+      "name": "equivalent offset",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T17:00:00+01:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T17:00:00+01:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": []
+    },
+    {
+      "name": "metadata metric_code",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": "123",
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "metadata_mismatch"
+      ]
+    },
+    {
+      "name": "metadata timestamp",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2025-01-01T00:00:00Z",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "metadata_mismatch"
+      ]
+    },
+    {
+      "name": "metadata quality",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "invalid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "metadata_mismatch"
+      ]
+    },
+    {
+      "name": "metadata device_type",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "metadata_mismatch"
+      ]
+    },
+    {
+      "name": "metadata mapping_status",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "mapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "metadata_mismatch"
+      ]
+    },
+    {
+      "name": "unmapped needs explicit null",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "metadata_mismatch"
+      ]
+    },
+    {
+      "name": "metadata absent",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm"
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "metadata_mismatch"
+      ]
+    },
+    {
+      "name": "topic mismatch",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P002/vitals",
+      "retained": false,
+      "codes": [
+        "topic_mismatch"
+      ]
+    },
+    {
+      "name": "retained reading",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": true,
+      "codes": [
+        "retained_message"
+      ]
+    },
+    {
+      "name": "invalid JSON",
+      "payload": "{bad",
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_json"
+      ]
+    },
+    {
+      "name": "non object",
+      "payload": [],
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_format"
+      ]
+    },
+    {
+      "name": "legacy batch",
+      "payload": {
+        "values": {
+          "heart_rate": 84
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_format"
+      ]
+    },
+    {
+      "name": "ambiguous batch",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "device_id": "SIM_P001",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        },
+        "values": {
+          "heart_rate": 84
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_format"
+      ]
+    },
+    {
+      "name": "missing field",
+      "payload": {
+        "measurement_id": "M1",
+        "patient_id": "P001",
+        "timestamp": "2026-10-08T16:00:00+00:00",
+        "quality": "valid",
+        "reading_id": "M1",
+        "parameter": "heart_rate",
+        "value": 84,
+        "unit": "bpm",
+        "ieee11073_metadata": {
+          "metric_code": null,
+          "metric_refid": null,
+          "unit_code": null,
+          "unit_refid": null,
+          "device_type": "unspecified",
+          "timestamp": "2026-10-08T16:00:00+00:00",
+          "quality": "valid",
+          "mapping_status": "unmapped",
+          "nomenclature_system": "urn:iso:std:iso:11073:10101"
+        }
+      },
+      "topic": "health/P001/vitals",
+      "retained": false,
+      "codes": [
+        "invalid_format"
+      ]
+    }
+  ]
+}

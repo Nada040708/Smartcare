@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Demander un compte · Smartcare</title><link rel="stylesheet" href="/assets/style.css"><link rel="stylesheet" href="/assets/security.css">
+<script src="/assets/auth.js" defer></script><script src="/assets/signup.js" defer></script></head>
+<body class="login-page"><main class="login-card panel">
+<a class="brand" href="/login"><span class="brand-mark">S</span>Smartcare</a>
+<h1>Demander un compte</h1><p class="muted">Réservé aux professionnels de santé. L’accès sera actif après validation d’un administrateur.</p>
+<form id="signup-form"><label for="username">Identifiant professionnel</label><input id="username" name="username" autocomplete="username" required minlength="3" maxlength="64" autofocus>
+<label for="role">Fonction</label><select id="role" name="role"><option value="DOCTOR">Médecin</option><option value="NURSE">Infirmier / infirmière</option></select>
+<label for="password">Mot de passe</label><input id="password" name="password" type="password" autocomplete="new-password" required minlength="12" maxlength="128"><small class="muted">12 caractères minimum.</small>
+<p id="signup-message" role="status" class="form-error"></p><button class="button primary" type="submit">Envoyer la demande</button></form>
+<p class="auth-switch"><a href="/login">Retour à la connexion</a></p>
+</main></body></html>

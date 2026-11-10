@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "description": "Synthetic prototype acquisition limits, not clinical thresholds or certified device specifications.",
+  "max_age_seconds": 120,
+  "max_future_seconds": 5,
+  "accepted_quality": [
+    "valid",
+    "good"
+  ],
+  "nomenclature_system": "urn:iso:std:iso:11073:10101",
+  "parameters": {
+    "heart_rate": {
+      "unit": "bpm",
+      "minimum": 0,
+      "maximum": 300,
+      "metric_code": null,
+      "metric_refid": null,
+      "unit_code": null,
+      "unit_refid": null,
+      "mapping_status": "unmapped"
+    },
+    "spo2": {
+      "unit": "%",
+      "minimum": 0,
+      "maximum": 100,
+      "metric_code": "150456",
+      "metric_refid": "MDC_PULS_OXIM_SAT_O2",
+      "unit_code": "262688",
+      "unit_refid": "MDC_DIM_PERCENT",
+      "mapping_status": "mapped"
+    },
+    "temperature": {
+      "unit": "°C",
+      "minimum": 20,
+      "maximum": 50,
+      "metric_code": null,
+      "metric_refid": null,
+      "unit_code": null,
+      "unit_refid": null,
+      "mapping_status": "unmapped"
+    },
+    "systolic_bp": {
+      "unit": "mmHg",
+      "minimum": 1,
+      "maximum": 350,
+      "metric_code": "150021",
+      "metric_refid": "MDC_PRESS_BLD_NONINV_SYS",
+      "unit_code": "266016",
+      "unit_refid": "MDC_DIM_MMHG",
+      "mapping_status": "mapped"
+    },
+    "diastolic_bp": {
+      "unit": "mmHg",
+      "minimum": 1,
+      "maximum": 250,
+      "metric_code": "150022",
+      "metric_refid": "MDC_PRESS_BLD_NONINV_DIA",
+      "unit_code": "266016",
+      "unit_refid": "MDC_DIM_MMHG",
+      "mapping_status": "mapped"
+    },
+    "glucose": {
+      "unit": "mg/dL",
+      "minimum": 1,
+      "maximum": 1000,
+      "metric_code": null,
+      "metric_refid": null,
+      "unit_code": null,
+      "unit_refid": null,
+      "mapping_status": "unmapped"
+    },
+    "respiratory_rate": {
+      "unit": "breaths/min",
+      "minimum": 0,
+      "maximum": 100,
+      "metric_code": null,
+      "metric_refid": null,
+      "unit_code": null,
+      "unit_refid": null,
+      "mapping_status": "unmapped"
+    },
+    "hrv": {
+      "unit": "ms",
+      "minimum": 0,
+      "maximum": 5000,
+      "metric_code": null,
+      "metric_refid": null,
+      "unit_code": null,
+      "unit_refid": null,
+      "mapping_status": "unmapped"
+    },
+    "activity": {
+      "unit": "1",
+      "minimum": 0,
+      "maximum": 1,
+      "metric_code": null,
+      "metric_refid": null,
+      "unit_code": null,
+      "unit_refid": null,
+      "mapping_status": "unmapped"
+    }
+  }
+}

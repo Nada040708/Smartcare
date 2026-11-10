@@ -1,0 +1,5 @@
+[
+  {"patient_id":"P001","name":"Patient 01","profiles":["diabetes","hypertension"],"monitoring_enabled":true,"simulation_consent":{"granted":true,"date":"2026-10-08T00:00:00+00:00"}},
+  {"patient_id":"P002","name":"Patient 02","profiles":["anxiety"],"monitoring_enabled":true,"simulation_consent":{"granted":true,"date":"2026-10-08T00:00:00+00:00"}},
+  {"patient_id":"P003","name":"Patient 03","profiles":["hypertension"],"monitoring_enabled":true,"simulation_consent":{"granted":true,"date":"2026-10-08T00:00:00+00:00"}}
+]

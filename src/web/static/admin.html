@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Administration · Smartcare</title><link rel="stylesheet" href="/assets/style.css"><link rel="stylesheet" href="/assets/security.css">
+<script src="/assets/auth.js" defer></script><script src="/assets/admin.js" defer></script></head>
+<body><a class="skip" href="#main">Aller au contenu</a><header class="topbar"><a class="brand" href="/"><span class="brand-mark">S</span>Smartcare</a><nav aria-label="Navigation principale"><a href="/">Surveillance</a><a href="/alerts">Alertes</a><a href="/audit">Audit</a><a href="/admin" aria-current="page">Administration</a></nav><div class="account-controls"><span id="account-label"></span><button id="logout" class="button">Se déconnecter</button></div></header><main id="main" class="admin-page"><header><div><h1>Administration</h1><p class="muted">Comptes, patients et autorisations</p></div></header>
+<p id="account-error" role="alert" class="form-error"></p><p id="admin-message" role="status" class="muted"></p>
+<section class="panel"><h2>Utilisateurs</h2><p class="muted">Toute modification ferme les sessions du compte concerné.</p>
+<div class="table-wrap"><table><thead><tr><th>Identifiant</th><th>Rôle</th><th>État</th><th>Actions</th></tr></thead><tbody id="users"></tbody></table></div></section>
+<section class="panel"><h2>Créer un compte</h2><p class="muted">Les médecins et infirmiers consultent le suivi. Les administrateurs gèrent également les comptes et le journal d’accès.</p>
+<form id="create-user" class="admin-form"><label>Identifiant<input name="username" required minlength="3" maxlength="64" autocomplete="off"></label>
+<label>Mot de passe initial<input name="password" type="password" required minlength="12" maxlength="128" autocomplete="new-password"></label>
+<label>Rôle<select name="role"><option value="DOCTOR">Médecin</option><option value="NURSE">Infirmier / infirmière</option><option value="ADMIN">Administrateur</option></select></label>
+<button class="button primary" type="submit">Créer le compte</button></form></section>
+<section class="panel" id="patient-management"><div class="panel-heading"><div><h2>Ajouter un patient</h2><p class="muted">Le patient sera disponible dans la surveillance avec les profils sélectionnés.</p></div></div>
+<form id="create-patient" class="admin-form patient-form"><label>Identifiant patient<input name="patient_id" required maxlength="64" pattern="[A-Za-z0-9_-]+" placeholder="P004"></label>
+<label>Nom affiché<input name="name" required maxlength="120" placeholder="Patient 04"></label>
+<fieldset><legend>Profils cliniques</legend><label><input type="checkbox" name="profiles" value="diabetes"> Diabète</label><label><input type="checkbox" name="profiles" value="hypertension"> Hypertension</label><label><input type="checkbox" name="profiles" value="anxiety"> Stress / anxiété</label></fieldset>
+<button class="button primary" type="submit">Ajouter le patient</button></form></section>
+<details class="panel advanced" id="consent-section"><summary>Consentements des patients</summary><p class="muted">Enregistrer la décision du patient. Un retrait suspend la collecte et masque les données de suivi ; les historiques restent conservés. Les consentements initiaux des patients de démonstration sont fictifs.</p><div class="table-wrap"><table><thead><tr><th>Patient</th><th>Décision</th><th>Date</th><th>Action</th></tr></thead><tbody id="consents"></tbody></table></div></details>
+<details class="panel advanced"><summary>Réinitialiser un mot de passe</summary><form id="reset-password" class="admin-form">
+<label>Compte<select name="user_id" id="reset-user" aria-label="Compte"></select></label><label>Nouveau mot de passe<input name="password" type="password" minlength="12" maxlength="128" required autocomplete="new-password"></label>
+<button class="button" type="submit">Enregistrer</button></form></details>
+<details class="panel advanced" id="audit-section"><summary>Avancé : journal des accès</summary><div class="panel-heading"><div><h2>Journal des accès</h2><p class="muted">Connexions, refus d’accès et changements de comptes.</p></div><button id="reload-audit" class="button">Actualiser</button></div>
+<div class="table-wrap"><table><thead><tr><th>Date</th><th>Compte</th><th>Action</th><th>Compte concerné</th></tr></thead><tbody id="audit"></tbody></table></div>
+<div class="pagination"><button id="audit-prev" class="button">← Précédent</button><button id="audit-next" class="button">Suivant →</button></div></details>
+</main></body></html>

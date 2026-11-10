@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Connexion · Smartcare</title><link rel="stylesheet" href="/assets/style.css"><link rel="stylesheet" href="/assets/security.css">
+<script src="/assets/auth.js" defer></script><script src="/assets/login.js" defer></script></head>
+<body class="login-page"><main class="login-card panel">
+<a class="brand" href="/login"><span class="brand-mark">S</span>Smartcare</a>
+<h1>Se connecter</h1><p class="muted">Connectez-vous au prototype de télésurveillance.</p>
+<form id="login-form"><label for="username">Identifiant</label><input id="username" name="username" autocomplete="username" required maxlength="64" autofocus>
+<label for="password">Mot de passe</label><input id="password" name="password" type="password" autocomplete="current-password" required maxlength="128">
+<p id="login-error" role="alert" class="form-error"></p><button class="button primary" type="submit">Se connecter</button></form>
+<p class="auth-switch">Médecin ou infirmier ? <a href="/signup">Demander un compte</a></p>
+</main></body></html>

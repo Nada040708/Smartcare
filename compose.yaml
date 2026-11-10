@@ -1,0 +1,55 @@
+name: smartcare
+services:
+  postgres:
+    image: postgres:17
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-smartcare}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your private .env file}
+      POSTGRES_DB: ${POSTGRES_DB:-smartcare}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    ports:
+      - "127.0.0.1:${MQTT_PORT:-1883}:1883"
+    volumes:
+      - ./infra/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    healthcheck:
+      test: ["CMD", "mosquitto_pub", "-h", "127.0.0.1", "-t", "smartcare/healthcheck", "-m", "ready", "-q", "1"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  node-red:
+    image: nodered/node-red:4.1.15-22
+    ports:
+      - "127.0.0.1:${NODE_RED_PORT:-1880}:1880"
+    environment:
+      MQTT_HOST: mosquitto
+      MQTT_PORT: "1883"
+      SMARTCARE_VALIDATION_POLICY: /opt/smartcare/validation-policy.json
+    volumes:
+      - node_red_data:/data
+      - ./infra/node-red/flows.json:/opt/smartcare/flows.json:ro
+      - ./infra/node-red/settings.js:/opt/smartcare/settings.js:ro
+      - ./infra/node-red/start.sh:/opt/smartcare/start.sh:ro
+      - ./infra/node-red/validator.cjs:/opt/smartcare/validator.cjs:ro
+      - ./config/validation-policy.json:/opt/smartcare/validation-policy.json:ro
+    entrypoint: ["/bin/sh", "/opt/smartcare/start.sh"]
+    depends_on:
+      mosquitto:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:1880/',r=>{r.resume();process.exit(r.statusCode===200?0:1)}).on('error',()=>process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+volumes:
+  node_red_data:
+  postgres_data:

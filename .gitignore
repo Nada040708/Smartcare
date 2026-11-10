@@ -1,0 +1,54 @@
+# Local environments and Python caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+
+# Private configuration and cryptographic material
+.env
+.env.*
+!.env.example
+.secrets/
+*.key
+*.pem
+*.crt
+*.cer
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Generated reports, screenshots and browser artifacts
+reports/
+playwright-report/
+test-results/
+*.xml
+coverage.json
+
+# Local databases and runtime output
+*.db
+*.sqlite
+*.sqlite3
+*.log
+*.pid
+*.sock
+
+# Editors, operating systems and JavaScript dependencies
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

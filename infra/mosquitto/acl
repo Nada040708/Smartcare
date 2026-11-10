@@ -1,0 +1,14 @@
+# Default deny. The multipatient simulator is a single technical demo account.
+user simulator
+topic write health/+/vitals
+
+user node-red
+topic read health/+/vitals
+topic write health/+/received
+topic write health/+/rejected
+
+user receiver
+topic read health/+/received
+
+user healthcheck
+topic write smartcare/healthcheck

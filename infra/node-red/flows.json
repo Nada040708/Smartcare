@@ -1,0 +1,192 @@
+[
+  {
+    "id": "smartcare-step4",
+    "type": "tab",
+    "label": "Smartcare — Étapes 4 et 5",
+    "disabled": false,
+    "info": "MQTT → JSON → validation technique → mesures acceptées / rejets. Aucun diagnostic."
+  },
+  {
+    "id": "step4-info",
+    "type": "comment",
+    "z": "smartcare-step4",
+    "name": "Mesures structurées — reçu technique, pas une alerte clinique",
+    "info": "Les messages health/+/vitals sont décodés. Les reçus health/+/received servent au test de bout en bout. QoS 1 peut livrer des doublons.",
+    "x": 340,
+    "y": 60,
+    "wires": []
+  },
+  {
+    "id": "vitals-in",
+    "type": "mqtt in",
+    "z": "smartcare-step4",
+    "name": "Mesures multipatient",
+    "topic": "health/+/vitals",
+    "qos": "1",
+    "datatype": "utf8",
+    "broker": "smartcare-broker",
+    "nl": false,
+    "rap": true,
+    "rh": 0,
+    "inputs": 0,
+    "x": 160,
+    "y": 140,
+    "wires": [
+      [
+        "decode-json"
+      ]
+    ]
+  },
+  {
+    "id": "decode-json",
+    "type": "json",
+    "z": "smartcare-step4",
+    "name": "Décoder JSON",
+    "property": "payload",
+    "action": "obj",
+    "pretty": false,
+    "x": 370,
+    "y": 140,
+    "wires": [
+      [
+        "check-envelope"
+      ]
+    ]
+  },
+  {
+    "id": "check-envelope",
+    "type": "function",
+    "z": "smartcare-step4",
+    "name": "DataValidator",
+    "func": "const validation = global.get(\"smartcareValidation\");\nif (!validation) { node.error(\"Validation module unavailable\", msg); return null; }\nconst result = validation.validate(msg.payload, {topic:msg.topic, retained:msg.retain === true});\nif (!result.accepted) {\n    const match = /^health\\/([A-Za-z0-9_-]+)\\/vitals$/.exec(msg.topic || \"\");\n    if (!match) { node.error(\"Invalid source topic\", msg); return null; }\n    const id = msg.payload && typeof msg.payload.measurement_id === \"string\" ? msg.payload.measurement_id : null;\n    return [null, null, {topic:\"health/\"+match[1]+\"/rejected\", payload:JSON.stringify({measurement_id:id,...result})}];\n}\nconst data = msg.payload;\nreturn [\n    {payload:\"Patient \" + data.patient_id + \" | \" + data.parameter + \": \" + data.value + \" \" + data.unit},\n    {topic:\"health/\"+data.patient_id+\"/received\", payload:JSON.stringify(data)},\n    null\n];",
+    "outputs": 3,
+    "timeout": 0,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 590,
+    "y": 140,
+    "wires": [
+      [
+        "received-debug"
+      ],
+      [
+        "receipt-out"
+      ],
+      [
+        "errors-debug",
+        "receipt-out"
+      ]
+    ]
+  },
+  {
+    "id": "received-debug",
+    "type": "debug",
+    "z": "smartcare-step4",
+    "name": "Mesure reçue",
+    "active": true,
+    "tosidebar": true,
+    "console": true,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 840,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "receipt-out",
+    "type": "mqtt out",
+    "z": "smartcare-step4",
+    "name": "Reçu technique (test)",
+    "topic": "",
+    "qos": "1",
+    "retain": "false",
+    "respTopic": "",
+    "contentType": "",
+    "userProps": "",
+    "correl": "",
+    "expiry": "",
+    "broker": "smartcare-broker",
+    "x": 850,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "errors",
+    "type": "catch",
+    "z": "smartcare-step4",
+    "name": "JSON / enveloppe invalides",
+    "scope": [
+      "decode-json",
+      "check-envelope"
+    ],
+    "uncaught": false,
+    "x": 230,
+    "y": 260,
+    "wires": [
+      [
+        "format-rejection"
+      ]
+    ]
+  },
+  {
+    "id": "errors-debug",
+    "type": "debug",
+    "z": "smartcare-step4",
+    "name": "Message rejeté",
+    "active": true,
+    "tosidebar": true,
+    "console": true,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 560,
+    "y": 260,
+    "wires": []
+  },
+  {
+    "id": "smartcare-broker",
+    "type": "mqtt-broker",
+    "name": "Mosquitto Smartcare",
+    "broker": "${MQTT_HOST}",
+    "port": "${MQTT_PORT}",
+    "clientid": "smartcare-node-red",
+    "autoConnect": true,
+    "usetls": false,
+    "protocolVersion": "4",
+    "keepalive": "60",
+    "cleansession": true,
+    "autoUnsubscribe": true,
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": "",
+    "closeTopic": "",
+    "closeQos": "0",
+    "closePayload": "",
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": ""
+  },
+  {
+    "id": "format-rejection",
+    "type": "function",
+    "z": "smartcare-step4",
+    "name": "Rejet JSON / erreur technique",
+    "func": "const match = /^health\\/([A-Za-z0-9_-]+)\\/vitals$/.exec(msg.topic || \"\");\nif (!match) return null;\nconst code = msg.error && msg.error.source && msg.error.source.id === \"decode-json\" ? \"invalid_json\" : \"validation_unavailable\";\nreturn {topic:\"health/\"+match[1]+\"/rejected\",payload:JSON.stringify({measurement_id:null,accepted:false,errors:[{code,field:\"payload\"}]})};",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 320,
+    "wires": [
+      [
+        "errors-debug",
+        "receipt-out"
+      ]
+    ]
+  }
+]

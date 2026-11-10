@@ -1,0 +1,466 @@
+classDiagram
+
+%% =====================================================
+%% 1. PATIENT ET PROFIL CLINIQUE
+%% =====================================================
+
+class Patient {
+    +patient_id : String
+    +name : String
+    +monitoring_enabled : Boolean
+    +addProfile()
+    +removeProfile()
+}
+
+class ClinicalProfile {
+    +profile_id : String
+    +name : String
+    +description : String
+    +priorityParameters : List
+    +getRules()
+}
+
+class DiabetesProfile
+class HypertensionProfile
+class AnxietyProfile
+
+ClinicalProfile <|-- DiabetesProfile
+ClinicalProfile <|-- HypertensionProfile
+ClinicalProfile <|-- AnxietyProfile
+
+Patient "1" --> "*" ClinicalProfile
+
+
+%% =====================================================
+%% 2. PARAMETRES PHYSIOLOGIQUES
+%% =====================================================
+
+class PhysiologicalParameter {
+    <<abstract>>
+    +name : String
+    +unit : String
+    +value : Float
+    +timestamp : DateTime
+    +generate()
+}
+
+class HeartRate
+class SpO2
+class Temperature
+class BloodPressure {
+    +systolic : Float
+    +diastolic : Float
+}
+class Glucose
+class RespiratoryRate
+class HRV
+class Activity
+
+PhysiologicalParameter <|-- HeartRate
+PhysiologicalParameter <|-- SpO2
+PhysiologicalParameter <|-- Temperature
+PhysiologicalParameter <|-- BloodPressure
+PhysiologicalParameter <|-- Glucose
+PhysiologicalParameter <|-- RespiratoryRate
+PhysiologicalParameter <|-- HRV
+PhysiologicalParameter <|-- Activity
+
+Patient "1" --> "*" PhysiologicalParameter
+
+
+%% =====================================================
+%% 3. MESURES ET IEEE 11073
+%% =====================================================
+
+class Measurement {
+    +measurement_id : String
+    +patient_id : String
+    +device_id : String
+    +timestamp : DateTime
+    +value : Float
+    +quality : String
+    +validate()
+    +toJSON()
+}
+
+class IEEE11073Metadata {
+    +metricCode : String
+    +unitCode : String
+    +deviceType : String
+    +timestamp : DateTime
+    +quality : String
+}
+
+Measurement "1" --> "1" IEEE11073Metadata
+PhysiologicalParameter --> Measurement
+Patient "1" --> "*" Measurement
+
+
+%% =====================================================
+%% 4. CAPTEURS ET SIMULATION
+%% =====================================================
+
+class SensorDevice {
+    +device_id : String
+    +status : String
+    +patient_id : String
+    +read()
+    +getStatus()
+}
+
+class SensorSimulator {
+    +interval : Int
+    +start()
+    +stop()
+    +generateMeasurement()
+    +simulateFailure()
+    +restore()
+}
+
+SensorDevice <|-- SensorSimulator
+SensorDevice --> Patient
+SensorSimulator --> Measurement
+
+
+class GenerationStrategy {
+    <<interface>>
+    +generate()
+}
+
+class NormalStrategy {
+    +generate()
+}
+
+class ProgressiveAnomalyStrategy {
+    +generate()
+}
+
+class SuddenAnomalyStrategy {
+    +generate()
+}
+
+class MissingDataStrategy {
+    +generate()
+}
+
+GenerationStrategy <|.. NormalStrategy
+GenerationStrategy <|.. ProgressiveAnomalyStrategy
+GenerationStrategy <|.. SuddenAnomalyStrategy
+GenerationStrategy <|.. MissingDataStrategy
+
+SensorSimulator --> GenerationStrategy
+
+
+%% =====================================================
+%% 5. MQTT / COMMUNICATION
+%% =====================================================
+
+class MQTTPublisher {
+    +broker : String
+    +topic : String
+    +connect()
+    +publish()
+    +disconnect()
+}
+
+class MQTTSubscriber {
+    +broker : String
+    +topic : String
+    +connect()
+    +subscribe()
+    +onMessage()
+}
+
+class MosquittoBroker {
+    +host : String
+    +port : Int
+    +routeMessage()
+}
+
+SensorSimulator --> MQTTPublisher
+MQTTPublisher --> MosquittoBroker
+MosquittoBroker --> MQTTSubscriber
+
+
+%% =====================================================
+%% 6. SECURITE DE COMMUNICATION
+%% =====================================================
+
+class TLSService {
+    +certificate : String
+    +encryptChannel()
+    +verifyCertificate()
+}
+
+class MQTTAuthentication {
+    +username : String
+    +passwordHash : String
+    +authenticate()
+}
+
+MQTTPublisher --> TLSService
+MQTTSubscriber --> TLSService
+MosquittoBroker --> MQTTAuthentication
+
+
+%% =====================================================
+%% 7. NODE-RED ET TRAITEMENT
+%% =====================================================
+
+class NodeREDFlow {
+    +receiveMessage()
+    +decodeJSON()
+    +routeData()
+    +handleError()
+}
+
+class DataValidator {
+    +validateFormat()
+    +validateRange()
+    +validateTimestamp()
+    +validateQuality()
+}
+
+MQTTSubscriber --> NodeREDFlow
+NodeREDFlow --> DataValidator
+
+
+%% =====================================================
+%% 8. REGLES SELON LE PROFIL
+%% =====================================================
+
+class MonitoringRule {
+    <<abstract>>
+    +rule_id : String
+    +severity : String
+    +evaluate()
+}
+
+class ThresholdRule {
+    +parameter : String
+    +operator : String
+    +threshold : Float
+    +evaluate()
+}
+
+class CombinedRule {
+    +parameters : List
+    +evaluate()
+}
+
+class TrendRule {
+    +window : Int
+    +evaluate()
+}
+
+MonitoringRule <|-- ThresholdRule
+MonitoringRule <|-- CombinedRule
+MonitoringRule <|-- TrendRule
+
+ClinicalProfile "1" --> "*" MonitoringRule
+
+
+%% =====================================================
+%% 9. DETECTION DES ANOMALIES
+%% =====================================================
+
+class AnomalyDetector {
+    +detect()
+    +detectCombinedAnomaly()
+    +detectTrend()
+}
+
+DataValidator --> AnomalyDetector
+MonitoringRule --> AnomalyDetector
+ClinicalProfile --> AnomalyDetector
+
+
+%% =====================================================
+%% 10. ETAT DU PATIENT
+%% =====================================================
+
+class MonitoringStateManager {
+    +currentState : MonitoringState
+    +evaluateState()
+    +returnToNormal()
+}
+
+class MonitoringState {
+    <<enumeration>>
+    NORMAL
+    SURVEILLANCE
+    ALERT
+    CRITICAL
+    DISCONNECTED
+}
+
+AnomalyDetector --> MonitoringStateManager
+MonitoringStateManager --> MonitoringState
+
+
+%% =====================================================
+%% 11. ALERTES
+%% =====================================================
+
+class AlertEngine {
+    +evaluate()
+    +determineSeverity()
+    +createAlert()
+    +resolveAlert()
+}
+
+class Alert {
+    +alert_id : String
+    +patient_id : String
+    +parameter : String
+    +severity : String
+    +message : String
+    +timestamp : DateTime
+    +status : String
+    +resolve()
+}
+
+AnomalyDetector --> AlertEngine
+MonitoringStateManager --> AlertEngine
+AlertEngine --> Alert
+
+
+%% =====================================================
+%% 12. CAS DEGRADES / FIABILITE
+%% =====================================================
+
+class ConnectionMonitor {
+    +lastMessageTimestamp : DateTime
+    +timeout : Int
+    +checkConnection()
+    +detectTimeout()
+    +detectRecovery()
+}
+
+class TechnicalEvent {
+    +event_id : String
+    +type : String
+    +timestamp : DateTime
+    +status : String
+    +description : String
+}
+
+ConnectionMonitor --> TechnicalEvent
+SensorDevice --> ConnectionMonitor
+MQTTSubscriber --> ConnectionMonitor
+ConnectionMonitor --> MonitoringStateManager
+
+
+%% =====================================================
+%% 13. STOCKAGE
+%% =====================================================
+
+class MeasurementRepository {
+    +save()
+    +getByPatient()
+    +getHistory()
+}
+
+class AlertRepository {
+    +save()
+    +getActive()
+    +getHistory()
+}
+
+class EventRepository {
+    +save()
+    +getHistory()
+}
+
+Measurement --> MeasurementRepository
+Alert --> AlertRepository
+TechnicalEvent --> EventRepository
+
+
+%% =====================================================
+%% 14. CONFIDENTIALITE DES DONNEES
+%% =====================================================
+
+class EncryptionService {
+    +encrypt()
+    +decrypt()
+}
+
+class Consent {
+    +consent_id : String
+    +patient_id : String
+    +granted : Boolean
+    +date : DateTime
+    +revoke()
+}
+
+class AuditLog {
+    +log_id : String
+    +user_id : String
+    +action : String
+    +timestamp : DateTime
+    +record()
+}
+
+MeasurementRepository --> EncryptionService
+AlertRepository --> EncryptionService
+Patient --> Consent
+
+
+%% =====================================================
+%% 15. AUTHENTIFICATION ET AUTORISATION
+%% =====================================================
+
+class User {
+    +user_id : String
+    +username : String
+    +passwordHash : String
+    +role : Role
+}
+
+class Role {
+    <<enumeration>>
+    ADMIN
+    DOCTOR
+    NURSE
+}
+
+class AuthenticationService {
+    +login()
+    +logout()
+    +verifyCredentials()
+}
+
+class AuthorizationService {
+    +checkPermission()
+}
+
+User --> Role
+AuthenticationService --> User
+AuthorizationService --> User
+AuthenticationService --> AuditLog
+AuthorizationService --> AuditLog
+
+
+%% =====================================================
+%% 16. DASHBOARD
+%% =====================================================
+
+class Dashboard {
+    +selectPatient()
+    +displayMeasurements()
+    +displayGraphs()
+    +displayAlerts()
+    +displayConnectionStatus()
+    +displayClinicalProfile()
+}
+
+AuthenticationService --> Dashboard
+AuthorizationService --> Dashboard
+
+MeasurementRepository --> Dashboard
+AlertRepository --> Dashboard
+EventRepository --> Dashboard
+Patient --> Dashboard
+ClinicalProfile --> Dashboard
+MonitoringStateManager --> Dashboard

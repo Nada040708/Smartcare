@@ -1,0 +1,9 @@
+{
+  "timeout_seconds": 15,
+  "startup_grace_seconds": 15,
+  "devices": [
+    {"patient_id":"P001","device_id":"SIM_P001","parameters":["heart_rate","spo2","temperature","systolic_bp","diastolic_bp","glucose","hrv","respiratory_rate","activity"]},
+    {"patient_id":"P002","device_id":"SIM_P002","parameters":["heart_rate","spo2","temperature","systolic_bp","diastolic_bp","glucose","hrv","respiratory_rate","activity"]},
+    {"patient_id":"P003","device_id":"SIM_P003","parameters":["heart_rate","spo2","temperature","systolic_bp","diastolic_bp","glucose","hrv","respiratory_rate","activity"]}
+  ]
+}

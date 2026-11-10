@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "purpose": "Educational demonstration only; not a clinically validated monitoring protocol.",
+  "common": [
+    {
+      "kind": "threshold",
+      "rule_id": "high_heart_rate",
+      "severity": "WARNING",
+      "message": "Fréquence cardiaque au-dessus du seuil de démonstration.",
+      "parameter": "heart_rate",
+      "operator": ">",
+      "threshold": 100
+    },
+    {
+      "kind": "threshold",
+      "rule_id": "low_spo2",
+      "severity": "WARNING",
+      "message": "SpO₂ sous le seuil de démonstration.",
+      "parameter": "spo2",
+      "operator": "<",
+      "threshold": 95
+    },
+    {
+      "kind": "threshold",
+      "rule_id": "high_temperature",
+      "severity": "WARNING",
+      "message": "Température au-dessus du seuil de démonstration.",
+      "parameter": "temperature",
+      "operator": ">",
+      "threshold": 37.5
+    },
+    {
+      "kind": "combined",
+      "rule_id": "combined_cardiopulmonary_anomaly",
+      "severity": "CRITICAL",
+      "message": "Fréquence cardiaque élevée et SpO₂ basse : surveillance renforcée (démo).",
+      "window_seconds": 30,
+      "max_skew_seconds": 10,
+      "conditions": [
+        {
+          "parameter": "heart_rate",
+          "operator": ">",
+          "threshold": 100
+        },
+        {
+          "parameter": "spo2",
+          "operator": "<",
+          "threshold": 95
+        }
+      ]
+    }
+  ],
+  "profiles": {
+    "diabetes": [
+      {
+        "kind": "threshold",
+        "rule_id": "diabetes_glucose_low",
+        "severity": "CRITICAL",
+        "message": "Glycémie sous le seuil configuré (démo).",
+        "parameter": "glucose",
+        "operator": "<",
+        "threshold": 70
+      },
+      {
+        "kind": "threshold",
+        "rule_id": "diabetes_glucose_high",
+        "severity": "WARNING",
+        "message": "Glycémie au-dessus du seuil configuré (démo).",
+        "parameter": "glucose",
+        "operator": ">",
+        "threshold": 180
+      }
+    ],
+    "hypertension": [
+      {
+        "kind": "threshold",
+        "rule_id": "hypertension_systolic_high",
+        "severity": "WARNING",
+        "message": "Pression systolique au-dessus du seuil configuré (démo).",
+        "parameter": "systolic_bp",
+        "operator": ">=",
+        "threshold": 140
+      },
+      {
+        "kind": "threshold",
+        "rule_id": "hypertension_diastolic_high",
+        "severity": "WARNING",
+        "message": "Pression diastolique au-dessus du seuil configuré (démo).",
+        "parameter": "diastolic_bp",
+        "operator": ">=",
+        "threshold": 90
+      },
+      {
+        "kind": "trend",
+        "rule_id": "hypertension_systolic_rising",
+        "severity": "WARNING",
+        "message": "Hausse progressive de la pression systolique sur la fenêtre de démonstration.",
+        "parameter": "systolic_bp",
+        "window_seconds": 60,
+        "minimum_delta": 15,
+        "min_samples": 3,
+        "min_span_seconds": 10,
+        "max_gap_seconds": 30
+      }
+    ],
+    "anxiety": [
+      {
+        "kind": "combined",
+        "rule_id": "anxiety_rest_pattern",
+        "severity": "WARNING",
+        "message": "Combinaison physiologique inhabituelle au repos : surveillance, sans diagnostic d’anxiété.",
+        "window_seconds": 30,
+        "max_skew_seconds": 10,
+        "conditions": [
+          {
+            "parameter": "heart_rate",
+            "operator": ">",
+            "threshold": 100
+          },
+          {
+            "parameter": "hrv",
+            "operator": "<",
+            "threshold": 30
+          },
+          {
+            "parameter": "respiratory_rate",
+            "operator": ">",
+            "threshold": 20
+          },
+          {
+            "parameter": "activity",
+            "operator": "<=",
+            "threshold": 0.2
+          }
+        ]
+      }
+    ]
+  }
+}

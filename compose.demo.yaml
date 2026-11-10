@@ -1,0 +1,14 @@
+# Explicit pedagogical overlay. Keep compose.secure.yaml before this file.
+services:
+  node-red:
+    ports: !override
+      - "127.0.0.1:1880:1880"
+    environment:
+      SMARTCARE_NODE_RED_SETTINGS: /opt/smartcare/settings.demo.js
+    volumes:
+      - ./infra/node-red/settings.demo.js:/opt/smartcare/settings.demo.js:ro
+      - ./.secrets/editor.json:/run/secrets/editor.json:ro
+      - ./.secrets/tls/broker.crt:/run/secrets/editor.crt:ro
+      - ./.secrets/tls/broker.key:/run/secrets/editor.key:ro
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('https').get('https://localhost:1880/',{ca:require('fs').readFileSync('/run/secrets/ca.crt')},r=>{r.resume();process.exit(r.statusCode===200?0:1)}).on('error',()=>process.exit(1))"]

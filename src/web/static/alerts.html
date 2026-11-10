@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alertes · Smartcare</title><link rel="stylesheet" href="/assets/style.css"><link rel="stylesheet" href="/assets/security.css">
+<script src="/assets/auth.js" defer></script><script src="/assets/app.js" defer></script></head>
+<body data-view="alerts"><a class="skip" href="#main">Aller au contenu</a>
+<header class="topbar"><a class="brand" href="/"><span class="brand-mark">S</span>Smartcare</a><nav aria-label="Navigation principale"><a href="/">Surveillance</a><a href="/alerts" aria-current="page">Alertes <span class="nav-alert-count" hidden>0</span></a><a href="/audit">Audit</a><a id="admin-link" href="/admin" hidden>Administration</a></nav><div class="account-controls"><span id="account-label"></span><button id="logout" class="button">Se déconnecter</button></div></header>
+<main id="main"><div class="heading"><div><h1>Alertes</h1><p class="muted">Mesures simulées · Suivi sans diagnostic</p></div><div class="refresh-controls"><span id="receiver-status" class="connection">Connexion en cours</span><button id="refresh" class="button">Actualiser</button></div></div>
+<p id="account-error" class="form-error" role="alert"></p><div id="error" class="error-banner" role="alert" hidden></div><div id="notice" class="notice" role="status" hidden></div>
+<div class="heading alert-toolbar"><div><strong>Historique des alertes</strong><p class="muted">Les alertes actives restent ouvertes jusqu’à une action de l’équipe de soins.</p></div><label>Afficher<select id="alert-status"><option value="ALL" selected>Tout l’historique</option><option value="ACTIVE">Actives uniquement</option><option value="RESOLVED">Résolues uniquement</option></select></label><span id="updated-at" class="muted"></span></div>
+<section class="panel"><div class="panel-heading"><h2>Alertes physiologiques</h2></div><div id="alert-rows" class="alert-list"></div><div class="pagination"><span id="alert-pagination" class="muted"></span><div><button id="previous-alerts" class="button">Précédent</button><button id="next-alerts" class="button">Suivant</button></div></div></section>
+<section class="panel"><div class="panel-heading"><div><h2>Incidents techniques</h2><p class="muted">Déconnexions et données manquantes. Historique limité aux dix derniers événements par patient.</p></div></div><div id="technical-alerts" class="alert-list"></div></section>
+</main></body></html>

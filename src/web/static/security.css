@@ -1,0 +1,25 @@
+[hidden]{display:none!important}
+.login-page{display:grid;place-items:center;min-height:100vh;padding:24px}
+.login-card{width:100%;max-width:440px;padding:38px}
+.login-card .brand{margin-bottom:36px;color:#323d53}
+.login-card h1{font-size:28px}
+.login-card form{display:grid;gap:12px;margin:28px 0}
+.login-card label,.admin-form label{font-size:13px;font-weight:600;color:#45536a}
+.login-card input,.admin-form input,.admin-form select{min-width:0;border:1px solid #d8deea;border-radius:8px;padding:11px;font:inherit;background:white;color:#28364e}
+.login-card .button{justify-content:center;padding:13px}
+.form-error{color:#8c2e1d;min-height:20px;font-size:13px;overflow-wrap:anywhere}
+.account-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:12px}
+.account-controls a{color:var(--accent)}
+.admin-page{max-width:1120px;margin:auto;padding:32px}
+.admin-page .panel{padding:24px;margin:24px 0}
+.admin-page header{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.admin-form{display:flex;gap:14px;align-items:end;flex-wrap:wrap}
+.admin-form label{display:grid;gap:8px;flex:1;min-width:170px}
+.admin-page td{vertical-align:middle}.user-actions{display:flex;gap:8px;flex-wrap:wrap}
+.admin-page select{max-width:170px}
+@media(max-width:600px){.login-card{padding:25px}.admin-page{padding:18px}.account-controls{gap:8px}.topbar{height:auto;min-height:70px;padding-block:12px;flex-wrap:wrap}.topbar-right{flex-wrap:wrap}}
+
+.admin-page .advanced{padding:0}.advanced>p,.advanced>form{margin:0 20px 20px}.advanced>summary{padding:18px 20px}.admin-page .panel h2{margin-bottom:10px}.admin-page .panel .muted{margin-bottom:12px}.admin-page .admin-form{margin-top:12px}.login-card .brand{display:block;margin-bottom:18px}.admin-page header{margin-bottom:20px}
+@media(max-width:600px){.admin-page #users td{padding:10px 5px}.admin-page #users select{max-width:125px}.user-actions .button{font-size:12px;padding:7px}.admin-page th{padding:8px 5px}.admin-page .panel{padding:16px}.admin-page .advanced{padding:0}.admin-page #users tr{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}.admin-page #users td{border:0}.admin-page table:has(#users) thead{display:none}.user-actions{grid-column:1/-1}}
+
+.login-page{background:radial-gradient(circle at 15% 10%,#ebe4ff 0,transparent 32%),radial-gradient(circle at 90% 85%,#ddf6ec 0,transparent 30%),#f8f7fc}.login-card{max-width:460px;border-top:4px solid var(--accent)}.login-card .brand{display:flex}.success-message{color:#0d7355;background:var(--green-soft);border:1px solid #a8ddcb;border-radius:9px;padding:12px;font-size:13px}.auth-switch{margin-top:18px;text-align:center;color:var(--muted)}.admin-page{max-width:1120px;padding:32px 24px}
