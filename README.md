@@ -1,80 +1,99 @@
 # Smartcare
 
-Les parcours d’inscription, de validation, de gestion des patients, d’alertes et d’audit sont
-résumés dans [docs/WORKFLOWS_CLINIQUES.md](docs/WORKFLOWS_CLINIQUES.md).
+Smartcare est notre prototype de télésurveillance médicale IoT.
 
-Smartcare est un mini-projet de télésurveillance IoT multipatient.
-Des capteurs Python simulés envoient des mesures ; le système les valide et applique les règles des profils diabète, hypertension et stress.
-Le résultat s’affiche dans un dashboard avec des alertes : il ne pose aucun diagnostic médical.
+L’idée est assez simple : des capteurs Python simulés envoient des mesures avec MQTT,
+Node-RED vérifie les messages, puis le backend analyse les données selon le profil du patient.
+On peut ensuite consulter les mesures, les courbes et les alertes dans une application web.
+
+> C’est un projet pédagogique de surveillance. Il ne réalise aucun diagnostic médical.
+
+## Aperçu de l’application
+
+### Surveillance des patients
+
+![Dashboard Smartcare](docs/images/dashboard.png)
+
+### Alertes sur mobile
+
+<p align="center">
+  <img src="docs/images/alertes-mobile.png" alt="Alertes Smartcare sur mobile" width="330">
+</p>
+
+## Ce qu’on a réalisé
+
+- surveillance de plusieurs patients ;
+- profils diabète, hypertension et suivi stress/anxiété ;
+- mesures simulées : fréquence cardiaque, SpO₂, température, tension, glycémie, respiration, HRV et activité ;
+- transmission MQTT avec Mosquitto ;
+- validation et routage avec Node-RED ;
+- règles par seuil, tendance et combinaison de paramètres ;
+- alertes actives jusqu’à leur résolution par un professionnel ;
+- historique des mesures, alertes et incidents techniques ;
+- comptes administrateur, médecin et infirmier ;
+- inscription des professionnels avec validation par l’administrateur ;
+- ajout de patients et de leurs profils ;
+- stockage PostgreSQL et dashboard FastAPI ;
+- HTTPS, MQTT/TLS, mots de passe hachés et données sensibles chiffrées.
+
+## Architecture résumée
 
 ```mermaid
 flowchart LR
-  A[Capteurs Python] -->|MQTT/TLS| B[Mosquitto]
-  B --> C[Node-RED : validation]
-  C -->|MQTT/TLS| D[Python : règles et alertes]
+  A[Capteurs Python simulés] -->|MQTT / TLS| B[Mosquitto]
+  B --> C[Node-RED]
+  C --> D[Moteur de règles Python]
   D --> E[(PostgreSQL)]
-  E --> F[FastAPI et dashboard HTTPS]
+  E --> F[FastAPI / Dashboard]
 ```
 
-## Prérequis
+En pratique, Node-RED sert surtout à recevoir, vérifier et router les messages.
+Les règles cliniques, les alertes, les utilisateurs et les patients sont gérés par le backend Python.
 
-- Python **3.11 ou plus récent**, avec `venv` et `pip`.
-- Docker Desktop démarré sur Windows/macOS, ou Docker Engine avec Compose sur Linux.
-- Docker Compose **2.24.4 minimum** ; accès Internet pour la première installation.
-- Ports locaux disponibles : **8000**, **8883**, **5433** et **1880** si Node-RED est affiché.
+## Lancer le projet
 
-Exécuter les commandes à la racine du dépôt. Aucun schéma préexistant n’est nécessaire : le défaut est `smartcare`.
+Il faut avoir Python 3.11 ou plus récent et Docker Desktop démarré.
 
-## Installer puis démarrer
+### 1. Préparer Python
 
-Créer et activer l’environnement une seule fois :
-
-**macOS / Linux**
+Sur macOS ou Linux :
 
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
+python -m pip install -r requirements.txt
 ```
 
-**Windows PowerShell**
+Sur Windows PowerShell :
 
 ```powershell
 py -3 -m venv .venv
 .venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 ```
 
-Si PowerShell bloque l’activation, utiliser `cmd` et `.venv\Scripts\activate.bat`.
-Puis, avec l’environnement activé, les commandes sont identiques :
+### 2. Démarrer Smartcare
 
 ```sh
-python -m pip install -r requirements.txt
 python smartcare.py start-demo --node-red
 ```
 
-Cette commande prépare les secrets s’ils n’existent pas, démarre les trois services Docker,
-initialise PostgreSQL et lance le serveur avec son récepteur MQTT. Elle conserve les clés,
-les comptes et les historiques existants. Elle reste ouverte dans ce premier terminal.
-Omettre `--node-red` pour laisser l’éditeur fermé.
+Au premier lancement, le programme demande le mot de passe du compte `admin`.
+Les secrets sont créés uniquement dans `.env` et `.secrets`, qui sont ignorés par Git.
 
-### Connexion locale
+Une fois le démarrage terminé :
 
-- Dashboard : **https://127.0.0.1:8000/login**.
-- Premier compte de démonstration : **`admin`**.
-- Au premier lancement, choisir un mot de passe de **12 à 128 caractères** dans le terminal.
-  Il est enregistré dans le fichier privé `.env`, ignoré par Git, sans être affiché.
-- On peut aussi créer `.env` à partir de `.env.example` et y définir
-  `SMARTCARE_DEMO_ADMIN_PASSWORD` avant le lancement. Ne pas partager ce fichier.
-- Si un compte existe déjà dans le schéma, **aucun compte ni mot de passe n’est modifié**.
-  Utiliser alors ses identifiants habituels, même si la variable `.env` a changé.
+- application : **https://127.0.0.1:8000/login** ;
+- Node-RED : **https://127.0.0.1:1880** ;
+- utilisateur initial : **admin** ;
+- mot de passe : celui choisi au premier lancement.
 
-Le navigateur doit faire confiance à la CA créée localement :
-[importer `.secrets/tls/ca.crt`](docs/SECURITE_ET_TESTS.md#certificats-locaux).
-HTTPS et MQTT/TLS restent activés en démonstration.
+Le certificat HTTPS est local. La procédure pour lui faire confiance est expliquée dans
+[la documentation sécurité](docs/SECURITE_ET_TESTS.md#certificats-locaux).
 
-## Voir les trois scénarios
+## Tester les scénarios
 
-Dans un **second terminal**, activer le même environnement. Lancer un scénario à la fois ;
-`Ctrl+C` l’arrête. Les commandes publient réellement vers MQTT, sans données injectées dans le navigateur.
+Dans un deuxième terminal, avec le même environnement Python activé :
 
 ```sh
 python smartcare.py simulate normal
@@ -82,52 +101,39 @@ python smartcare.py simulate anomaly
 python smartcare.py simulate disconnection
 ```
 
-| Scénario | Ce qu’on doit observer |
-| --- | --- |
-| `normal` | Mesures de P001/P002/P003 ; courbe alimentée. Attendre environ 15 s pour que les tendances puissent être évaluées. |
-| `anomaly` | Glycémie simulée de P001 à 240 mg/dL ; avec les règles livrées, une alerte apparaît. Les autres patients continuent normalement. |
-| `disconnection` | P001 émet 15 s, se tait 20 s avec le délai livré, puis reprend ; P002/P003 continuent. État « Capteur déconnecté », incident technique, puis récupération. |
+Mes notes pour la démonstration :
 
-Chaque scénario dure **60 s** par défaut (`--duration 120` pour deux minutes).
-La fin d’un simulateur entraîne ensuite une déconnexion attendue : ce n’est pas une panne du dashboard.
-L’état « À surveiller » signifie notamment que les données sont insuffisantes ou anciennes.
-Une récupération technique ne suffit pas à résoudre une alerte physiologique.
+- `normal` : les trois patients reçoivent des mesures normales ;
+- `anomaly` : P001 reçoit une glycémie anormale et une alerte apparaît ;
+- `disconnection` : P001 arrête temporairement d’émettre, puis se reconnecte ;
+- une alerte physiologique ne disparaît pas toute seule : un professionnel doit la résoudre.
 
-## Montrer Node-RED
+## Les rôles
 
-Avec `start-demo --node-red`, ouvrir **https://127.0.0.1:1880**.
-L’utilisateur de l’éditeur est `admin`, avec le mot de passe de démo choisi lors de la **première préparation de cet éditeur**.
-Il s’agit d’un compte distinct, en lecture seule : montrer le flow sans le redéployer.
-L’éditeur et son API exigent une authentification ; le port est lié uniquement à `127.0.0.1`.
-Le [script de présentation](docs/DEMONSTRATION.md) explique quoi montrer et dans quel ordre.
+- **Administrateur** : valide les inscriptions, gère les comptes, les patients et les consentements.
+- **Médecin** : consulte le suivi, ajoute des patients et résout les alertes.
+- **Infirmier / infirmière** : consulte le suivi, résout une alerte ou enregistre le contact d’un médecin.
 
-## Arrêter proprement
+## Arrêter le projet
 
-1. `Ctrl+C` dans le terminal du simulateur.
-2. `Ctrl+C` dans celui du serveur.
-3. `python smartcare.py stop` pour arrêter les conteneurs.
+Arrêter le serveur avec `Ctrl+C`, puis :
 
-Les volumes et les historiques sont conservés. Ne pas utiliser `down -v` ni supprimer `.secrets`.
-Sauvegarder `.secrets/storage.key` séparément : elle permet de relire les historiques chiffrés.
+```sh
+python smartcare.py stop
+```
 
-## Cinq problèmes fréquents
+Les comptes et les historiques PostgreSQL restent conservés.
 
-| Problème | Action |
-| --- | --- |
-| Docker indisponible | Démarrer Docker Desktop et attendre que son moteur soit prêt, puis relancer. |
-| Port déjà occupé | Arrêter l’ancien serveur/la pile de test ; ne pas lancer deux récepteurs sur le même schéma. |
-| Aucune mesure | Lancer `simulate normal`, sélectionner P001, vérifier « Réception active » et son consentement dans Administration. |
-| Connexion refusée | Vérifier le mot de passe privé ; un compte existant n’est jamais réinitialisé par `start-demo`. Vérifier aussi le schéma utilisé. |
-| Certificat refusé ou secret manquant | Vérifier la date système et la CA locale ; restaurer les fichiers privés manquants. Ne jamais recréer la clé de stockage pour tenter de réparer la lecture. |
+## Documentation
 
-## Comprendre et vérifier
+Les documents les plus utiles sont :
 
-- [Comprendre tout le projet en six étapes](docs/COMPRENDRE_SMARTCARE.md).
-- [Démonstration orale de 3 à 5 minutes](docs/DEMONSTRATION.md).
-- [Architecture simple et rôle de chaque composant](docs/ARCHITECTURE_SIMPLE.md).
-- [Sécurité, modes de lancement, tests et limites](docs/SECURITE_ET_TESTS.md).
-- [Vérification de cette simplification et fichiers modifiés](docs/VALIDATION_SIMPLIFICATION.md).
+- [Comprendre le projet simplement](docs/COMPRENDRE_SMARTCARE.md)
+- [Architecture](docs/ARCHITECTURE_SIMPLE.md)
+- [Scénario de démonstration](docs/DEMONSTRATION.md)
+- [Comptes, patients, alertes et audit](docs/WORKFLOWS_CLINIQUES.md)
+- [Sécurité et tests](docs/SECURITE_ET_TESTS.md)
+- [Résumé des 12 étapes](docs/resume_etapes.md)
+- [Traçabilité avec le diagramme UML](docs/uml_traceability.md)
 
-Les documents `docs/step*.md`, le [résumé des 12 étapes](docs/resume_etapes.md) et
-la [traçabilité UML](docs/uml_traceability.md) sont des références historiques et détaillées.
-Leurs anciens résultats de tests ne constituent pas une validation de la version actuelle.
+Les fichiers `docs/step*.md` gardent le détail de chaque étape du développement.
