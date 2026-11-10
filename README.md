@@ -6,22 +6,13 @@ L’idée est assez simple : des capteurs Python simulés envoient des mesures a
 Node-RED vérifie les messages, puis le backend analyse les données selon le profil du patient.
 On peut ensuite consulter les mesures, les courbes et les alertes dans une application web.
 
-> C’est un projet pédagogique de surveillance. Il ne réalise aucun diagnostic médical.
-
 ## Aperçu de l’application
 
 ### Surveillance des patients
 
 ![Dashboard Smartcare](docs/images/dashboard.png)
 
-### Alertes sur mobile
-
-<p align="center">
-  <img src="docs/images/alertes-mobile.png" alt="Alertes Smartcare sur mobile" width="330">
-</p>
-
-## Ce qu’on a réalisé
-
+### fonctionalités : 
 - surveillance de plusieurs patients ;
 - profils diabète, hypertension et suivi stress/anxiété ;
 - mesures simulées : fréquence cardiaque, SpO₂, température, tension, glycémie, respiration, HRV et activité ;
@@ -36,7 +27,7 @@ On peut ensuite consulter les mesures, les courbes et les alertes dans une appli
 - stockage PostgreSQL et dashboard FastAPI ;
 - HTTPS, MQTT/TLS, mots de passe hachés et données sensibles chiffrées.
 
-## Architecture résumée
+## Architecture simplifié
 
 ```mermaid
 flowchart LR
@@ -100,8 +91,6 @@ python smartcare.py simulate normal
 python smartcare.py simulate anomaly
 python smartcare.py simulate disconnection
 ```
-
-Mes notes pour la démonstration :
 
 - `normal` : les trois patients reçoivent des mesures normales ;
 - `anomaly` : P001 reçoit une glycémie anormale et une alerte apparaît ;
